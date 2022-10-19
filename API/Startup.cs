@@ -1,3 +1,5 @@
+using API.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 namespace API
@@ -14,6 +16,11 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<MilaoDbContext>(options =>
+            {
+                options.UseSqlite("Connection String");
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
