@@ -20,7 +20,7 @@ namespace API
 
             services.AddDbContext<MilaoDbContext>(options =>
             {
-                options.UseSqlite(_config.GetConnectionString("Default"));
+                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
 
             services.AddControllers();
