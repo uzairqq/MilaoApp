@@ -6,12 +6,13 @@ namespace API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfiguration _config { get; }
+        public Startup(IConfiguration config)
         {
-            Configuration = configuration;
+            _config = config;
+
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -19,7 +20,7 @@ namespace API
 
             services.AddDbContext<MilaoDbContext>(options =>
             {
-                options.UseSqlite("Connection String");
+                options.UseSqlite(_config.GetConnectionString("Default"));
             });
 
             services.AddControllers();
